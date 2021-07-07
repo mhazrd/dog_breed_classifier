@@ -15,12 +15,14 @@ Dog images:
   - Validation: 835
   - Test: 836
 
-- Image size: 226 x 226
 - Image channels: 3 channel (RGB)
 
 ### Procedures
-1. The images are transformed into 3-D tensors and normalised to conform to the backbone model's expectation
-2. The backbone model (eg. VGG16/19) extracts features from the image
+1. The images are preprocessed as follows:
+    1. The image is resized to 224 x 224
+    2. The image transformed into 3-D tensors
+    3. The image pixel values are normalised to conform to the backbone model's expectation
+2. The backbone model (eg. VGG16/19) extracts features from the preprocessed image
 3. The features are fed into the classification layer which is fine-tuned for dog-breed classification task
 4. Final model is created as a composition of the backbone-model and the classification layer
 
