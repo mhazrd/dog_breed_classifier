@@ -46,6 +46,14 @@ As explored inside the jupyter notebook, It's not easy to get a good performance
 
 Therefore, the backbone-model and transfer-learning can make it easier to get a good performance on custom task because these models are already trained carefully to extract good visual features with a lot of searches and data.
 
+### Potential improvements
+
+The fine-tuned classification layer achieves a much better accuracy than the custom model without a pretrained backbone. However, It wasn't easy to achieve an accuracy over 80% with just VGG19 + Dense-layer based architecture. It can be further optimized to improve with the following methods:
+
+1. Use more sophisticated optimization algorithm with proper hyperparameters
+2. Search a better architecture for the classification layer
+3. Try using more than 1 backbone pre-trained architecture 
+
 ## How to test web app
 
 - Go to app directory and start the Flask api server
