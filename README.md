@@ -2,7 +2,7 @@
 
 ### About: 
 
-It's not easy to differentiate multiple dog breeds, but with an advancement of machine learning, deep learning algorithm can determine dog breeds better than human. Given multiple images including multiple dog breeds, the deep learning model will be trained to classify its breeds.
+It's not easy to differentiate multiple dog breeds, but with an advancement of machine learning, deep learning algorithm can determine dog breeds better than human. Given multiple images including multiple dog breeds, the deep learning model will be trained to classify its breeds. This will be a example of image classification task.
 
 ### Model:
 The dataset includes 133 breeds of dog images and is used to train Convolutional Neural Netowrk model. The model is trained with cross entropy loss and evaluated with its accuracy on test dataset. The high accuracy will make the model be used in a mobile app to help users to know what dog breeds he is looking at.
@@ -14,6 +14,9 @@ Dog images:
   - Training: 6680
   - Validation: 835
   - Test: 836
+
+- Image size: 226 x 226
+- Image channels: 3 channel (RGB)
 
 ### Procedures
 1. The images are transformed into 3-D tensors and normalised to conform to the backbone model's expectation
