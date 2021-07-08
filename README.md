@@ -2,7 +2,7 @@
 
 ### Project Overview: 
 
-It's not easy to differentiate multiple dog breeds, but with an advancement of machine learning, deep learning algorithm can determine dog breeds better than human. The high accuracy will make the model be used in a mobile app to help users to know what dog breeds he is looking at. Given multiple images including multiple dog breeds, the deep learning model will be trained to classify its breeds. This will be a example of image classification task. In this project, images of different dog breeds are used to train Convolutional neural network model
+It's not easy to differentiate multiple dog breeds, but with an advancement of machine learning, deep learning algorithm can determine dog breeds better than human. The high accuracy will make the model be used in a mobile app to help users to know what dog breeds he is looking at. Given multiple images including multiple dog breeds, the deep learning model will be trained to classify their breeds. This will be a example of image classification task. In this project, images of different dog breeds are used to train Convolutional neural network model
 
 ### Problem Statement:
 
@@ -10,8 +10,8 @@ Machine Learning model is trained on the dog breed image dataset. Convolutional 
 
 ### Metrics
 
-- Evaluation metrics: Accuracy on dog-breed labels
-- Optimization metrics: Cross entropy on dog-breed labels
+- Evaluation metric: Accuracy on dog-breed labels
+- Optimization metric: Cross entropy on dog-breed labels
 
 ### Data Exploration
 
@@ -19,15 +19,15 @@ Machine Learning model is trained on the dog breed image dataset. Convolutional 
 
 ##### Dog images: 
 
-- Total images: 8351 
-  - Training: 6680
-  - Validation: 835
-  - Test: 836
-- Total Categories: 133
-  - Smallest number of label: ('Norwegian_buhund', 26.0) 
-  - Largest number of label: ('Alaskan_malamute', 77.0)
+- Total images: 8351 images
+  - Training: 6680 images
+  - Validation: 835 images
+  - Test: 836 images
+- Total Categories: 133 dog breeds
+  - Smallest number of label: ('Norwegian_buhund', 26 images) 
+  - Largest number of label: ('Alaskan_malamute', 77 images)
 - Image channels: 3 channel (RGB)
-- Image sizes: The image sizes vary a lot
+- Image sizes: Variation of sizes
   - Smallest size: 112 x 120
   - Largest size: 4278 x 3744 
 
@@ -41,17 +41,17 @@ Machine Learning model is trained on the dog breed image dataset. Convolutional 
 #### Data preprocessing
 
 The CNN expects the input image to be of a specific size. But the dog image dataset has a variety of image sizes. Therefore these images are resized to 224 x 224 before it's fed into the CNN model.
-The usual image RGB pixel values are encoded 3 channel 8 bit values ranging from 0 to 255. For better model training, these values are usually normalised and the normalization process can depend on the dataset and model architecture. In the final model, VGG19 back-bone model is used to extract features from images, therefore VGG19 normalization process is applied to the dog-breed image dataset.
+The usual image RGB pixel values are encoded 3 channel with 8 bit values ranging from 0 to 255. For better model training, these values are usually normalised and the process can depend on the dataset and model architecture. In the final model, VGG19 back-bone model is used to extract features from images, therefore VGG19 normalization process is applied to the dog-breed image dataset.
 
 #### Implementation
 
 - Metrics
-    - Evaluation metrics: Accuracy on dog-breed labels
-    - Optimization metrics: Cross entropy on dog-breed labels
+    - Evaluation metric: Accuracy on dog-breed labels
+    - Optimization metric: Cross entropy on dog-breed labels
 - Algorithm
-    - Model: Convolutional Neural Network
-    - Optimization: Adam
-    - As the optimization process can make the model overfit to the training dataset. This can make it tricky to find an optimal model during training is in progress. Keras framework support a convenient callback `ModelCheckpoint` which can track the metric as training progresses and stores the model state at an epoch where the model is optimal regarding the metric
+    - Model: Convolutional Neural Network (VGG19 + classification layers)
+    - Optimization algorithm: Adam
+    - As the optimization process can make the model overfit to the training dataset. This can make it tricky to find an optimal model during training is in progress. Keras framework supports a convenient callback `ModelCheckpoint` which can track the metric as training progresses and stores the model state at an epoch where the model is optimal regarding the metric
 
 #### Overall Steps 
 
@@ -65,8 +65,8 @@ The usual image RGB pixel values are encoded 3 channel 8 bit values ranging from
 
 #### Refinement
 
-Initially, a fully custom CNN model is used. But because of the large search space regarding hyperparameters, model architecture and optimization algorithms, it was not easy to find a good combination showing a good performance. This fully custom CNN model achieved ~2% accuracy which is still better than random guessing but far from a usable performance.
-In order to reduce the search space, previously proven model architecture is used to extract features and it's customized with final few layers for the custom task. It basically used a transfer learning from a more general image task into dog-breed classification task, reduce the search space of model architecture into a few final layers and helped improve the accuracy performance.
+Initially, a fully custom CNN model is used. But it was not easy to find a combination showing a good performance because of the large search space regarding hyperparameters, model architecture and optimization algorithms. This fully custom CNN model achieved ~2% accuracy which is still better than random guessing but far from a usable performance.
+In order to reduce the search space, previously proven model architecture is used to extract features and it's customized with final few layers for the custom task. It basically uses a transfer learning from a more general image task into dog-breed classification task, reduces the search space of model architecture into a few final layers and helped improve the accuracy performance.
 
 
 ### Results
@@ -91,8 +91,8 @@ dense_4 (Dense)              (None, 133)               34181
 
 - Accuracy on test dataset: 75.48%
 - Generalization test
-   - Even though the model worked well on the unseen test data. This test data comes from same dataset (with random sampling) and the general obtainable dog image might not share the charcteristic with the curated dataset. Therefore, random sample dog images are retrieved from web and used to check if the model can actullay generalize beyond the curated dataset.
-   - These random samples images are stored in test_img/ and used as a simple final check on model's generalizability
+   - Even though the model worked well on the unseen test data. This test data comes from same dataset (with random sampling) and the general obtainable dog image might not share the charcteristic with the curated dataset. Therefore, a few dog images were retrieved from the web and used to check if the model can actullay generalize beyond the curated dataset.
+   - These samples images from the web are stored in test_img/ and used to perform a simple final check on model's generalizability
 
 #### Justification
 
@@ -102,12 +102,12 @@ As explored inside the jupyter notebook, It's not easy to get a good performance
 ### Conclusion
 
 #### Reflection
-Dog breed classification is not an easy task for human because there are a lot of breeds and sometimes the difference can be subtle to recognize. Trained ML model can help human know what breed he is looking at, because the model can learn the subtle differences and successfully classify dog breeds. In this project, CNN model and transfer learning technique is used to achieve a high accuracy on the task. The final solution is made with pretrained VGG19 backbone network and fine-tuned classification layers on dog-breed labels. A few difficulties were:
+Dog breed classification is not an easy task for human because there are a lot of breeds and sometimes the difference can be subtle to recognize. Trained ML model can help human know what breed he is looking at, because the model can learn the subtle differences and successfully classify dog breeds. In this project, CNN model and transfer learning technique are used to achieve a high accuracy on the task. The final solution is made with pretrained VGG19 backbone network and fine-tuned classification layers on dog-breed labels. A few difficulties were:
 
 1. Huge search space in learning CNN model due to a lot of levers to tune (eg. architecture, hyperparameters, optimization algorithms)
 2. Uncertainty on the data size if it's big enough to learn good visual features and dog-breed labels together
 
-It had too many levers to consider and search when developing a fully custom model. But with transfer-learning technique, it became much easier to get a good performance on custom task because these models are already trained and tuned carefully to extract good visual features which can generalize across lot of image task domains.
+It had too many levers to consider/search when developing a fully custom model. But with transfer-learning technique, it became much easier to get a good performance on custom task because these models were already trained and tuned carefully to extract good visual features which can generalize across a lot of image domain tasks.
 
 #### Potential improvements
 
@@ -143,6 +143,7 @@ curl -X POST -F image=@dog_boston-terrier2.jpg http://localhost:5000/predict
 - test_img/ : This folder contains sample images to test the model
 - app/ : This folder contains simple API web-app to classify dog images
 - dog_app.ipynb: Main notebook for dog_breed classificer
+- README.md: Writeup of the project
 
 
 ## Dependencies
