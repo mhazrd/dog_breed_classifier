@@ -10,8 +10,13 @@ Machine Learning model is trained on the dog breed image dataset. Convolutional 
 
 ### Metrics
 
+The main task to solve is to classify dog-image into its breeds. There are 133 breeds and the dataset has a almost even number of images across these breeds. Therefore accuracy will be a good metric to assess the ML model's performance on the classification task. If the dataset labels are highly skewed, the other metrics like f1-score could be used.
+
+The accuracy is good for the model evaluation, but the deep learning model requires a continuous metric which the algorithm can optimize for. Cross-entropy loss is a continuous metric and can be used as a proxy for accuracy because it is an upper bound on the accuracy metric 
+
 - Evaluation metric: Accuracy on dog-breed labels
 - Optimization metric: Cross entropy on dog-breed labels
+
 
 ### Data Exploration
 
@@ -90,9 +95,14 @@ dense_4 (Dense)              (None, 133)               34181
 #### Model Validation
 
 - Accuracy on test dataset: 75.48%
-- Generalization test
+- Generalization Test
    - Even though the model worked well on the unseen test data. This test data comes from same dataset (with random sampling) and the general obtainable dog image might not share the charcteristic with the curated dataset. Therefore, a few dog images were retrieved from the web and used to check if the model can actullay generalize beyond the curated dataset.
    - These samples images from the web are stored in test_img/ and used to perform a simple final check on model's generalizability
+- Robustness Test
+    - The model might be sensitive to each training process or a little difference on the training dataset. Therefore, it's useful to check if the test performance is achievable regardless of this kind of randomness
+    - To check model's robustness, the training dataset is split into 5 folds randomly, and the model is trained and assessed on the test dataset 5 times with each fold removed. The test accuracy result is as follows:
+        - (74.16%, 71.77%, 73.68%, 75.60%, 74.40%)
+    - The mean is 73.92% and standard deviation is 1.24%. Therefore, it can be safely assumed that the model is robust against a small random perturbation and can achieve >= 70% accuracy
 
 #### Justification
 
